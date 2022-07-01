@@ -15,23 +15,17 @@ public class Client {
     private Integer taille;
     private Long portefeuille;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "client_id")
-    private Set<Vehicule> vehiculesList = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "client", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<Location> locations = new LinkedHashSet<>();
 
-    public Set<Vehicule> getVehiculesList() {
-        return vehiculesList;
+    public Set<Location> getLocations() {
+        return locations;
     }
 
-    public void setVehiculesList(Set<Vehicule> vehicules) {
-        this.vehiculesList = vehicules;
+    public void setLocations(Set<Location> locations) {
+        this.locations = locations;
     }
-    public void addVehicules(Vehicule vehicules) {
-        this.vehiculesList.add(vehicules);
-    }
-    public void removeVehicules(Vehicule vehicules) {
-        this.vehiculesList.remove(vehicules);
-    }
+
     public String getNom() {
         return nom;
     }

@@ -19,6 +19,18 @@ public abstract class Vehicule implements Comparable<Vehicule>{
     private int tarifParHeure;
     private boolean Dispo;
 
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "location_id")
+    private Location location;
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
     public Long getId() {
         return id;
     }
