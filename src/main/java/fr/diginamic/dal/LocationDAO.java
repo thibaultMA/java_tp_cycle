@@ -8,4 +8,5 @@ public class LocationDAO extends EntityDAOFactory<Location>{
     public LocationDAO(EntityManager em) {
         super(em);
     }
+
 }

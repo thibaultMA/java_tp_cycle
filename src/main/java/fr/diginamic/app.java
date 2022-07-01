@@ -16,17 +16,16 @@ public class app {
     static EntityManagerFactory emf = Persistence.createEntityManagerFactory("demo-JPA");
     public static void main(String[] args) {
         EntityManager em = emf.createEntityManager();
-        VehiculeDAO veloHibernateDao = new VehiculeDAO(em);
         LocationDAO locationDAO = new LocationDAO(em);
-        
+        LocationService locationService = new LocationService(locationDAO);
+
         Velo velo = new Velo();
+        velo.setNbrPignon(3);
+        velo.setNbrPLateau(8);
+
         Client client1 = new Client();
-
-        LocationService locationService = new LocationService();
         Location location = locationService.reserver(client1, velo, 25);
-        veloHibernateDao.saveEntity(velo);
 
-        locationDAO.saveEntity(location);
-        System.out.println(velo.getTarif());
+        System.out.println(velo);
     }
 }
